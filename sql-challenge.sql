@@ -2,7 +2,8 @@
 
 SELECT first_name, last_name, email FROM customer;
 
--- Use what you’ve learned about SELECT DISTINCT to retrieve the distinct rating types our films could have in our database.
+/* Use what you’ve learned about SELECT DISTINCT to retrieve the distinct 
+   rating types our films could have in our database. */
 
 SELECT DISTINCT rating FROM film;
 
@@ -19,7 +20,8 @@ AND last_name ='Thomas';
 SELECT description FROM film
 WHERE title ='Outlaw Hanky';
 
-/* A customer is late on their movie return, and we’ve mailed them a letter to their address at ‘259 Ipoh Drive’.
+/* A customer is late on their movie return, and we’ve mailed them a letter 
+   to their address at ‘259 Ipoh Drive’.
    We should also call them on the phone to let them know.
    Can you get the phone number for the customer who lives at ‘259 Ipoh Drive’? */
 
@@ -75,14 +77,16 @@ AND replacement_cost BETWEEN 5 AND 15;
 SELECT COUNT(*) FROM film
 WHERE title LIKE '%Truman%';
 
-/* We have two staff members, with Staff IDs 1 and 2. We want to give a bonus to the staff member that handled the most payments.
+/* We have two staff members, with Staff IDs 1 and 2. We want to give a bonus 
+   to the staff member that handled the most payments.
    (Most in terms of number of payments processed, not total dollar amount).
    How many payments did each staff member handle and who gets the bonus? */
    
 SELECT staff_id, COUNT(payment_id) FROM payment
 GROUP BY staff_id;
 
-/* Corporate HQ is conducting a study on the relationship between replacement cost and a movie MPAA rating (e.g. G, PG, R, etc…).
+/* Corporate HQ is conducting a study on the relationship between replacement cost 
+   and a movie MPAA rating (e.g. G, PG, R, etc…).
    What is the average replacement cost per MPAA rating? 
    Note: You may need to expand the AVG column to view correct results */
 
@@ -96,3 +100,20 @@ SELECT customer_id, SUM(amount) FROM payment
 GROUP BY customer_id
 ORDER BY SUM(amount) DESC
 LIMIT 5;
+
+/* We are launching a platinum service for our most loyal customers. We will assign platinum status 
+   to customers that have had 40 or more transaction payments.
+   What customer_ids are eligible for platinum status? */
+   
+SELECT customer_id, COUNT(payment_id) FROM payment
+GROUP BY customer_id
+HAVING COUNT(payment_id)>= 40;
+
+/* What are the customer ids of customers who have spent more than $100 
+   in payment transactions with our staff_id member 2? */
+   
+SELECT customer_id,staff_id, SUM(amount) FROM payment
+WHERE staff_id = 2
+GROUP BY customer_id,staff_id
+HAVING SUM(amount) > 100
+ORDER BY customer_id;
