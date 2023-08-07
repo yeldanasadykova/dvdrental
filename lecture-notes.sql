@@ -8,11 +8,12 @@ SELECT customer_id, first_name, last_name FROM customer;
 -- Rename columns
 SELECT first_name AS "name" FROM customer;
 
--- LIMIT clause
+-- LIMIT clause is used to specify the number of records to return
 SELECT * FROM customer
 LIMIT 10;
 
--- WHERE clause is used to filter records
+/* WHERE clause is used to filter record. It is used to extract only 
+   those records that fulfill a scecified condition */
 SELECT * FROM customer
 WHERE store_id = 1;
 
@@ -58,7 +59,7 @@ INSERT INTO person (person_id, city)
 VALUES ('1','Prague');
 
 INSERT INTO person 
-VALUES ('2','Kosina','Roman');
+VALUES ('2','Kosina','Roman','Jenkin','Oslo');
 
 -- How to test for NULL values
 
@@ -68,3 +69,5 @@ WHERE address IS NULL;
 SELECT * FROM person
 WHERE city IS NOT NULL;
 
+
+-- 
