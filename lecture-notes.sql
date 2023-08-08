@@ -44,7 +44,7 @@ SELECT 	customer_id, store_id,
 		(customer_id + store_id)/2 AS id_name
 FROM customer;
 
---CREATE TABLE
+-- CREATE TABLE
 
 CREATE TABLE person(
 	person_id INT,
@@ -70,4 +70,15 @@ SELECT * FROM person
 WHERE city IS NOT NULL;
 
 
--- 
+-- UPDATE statement is used to modify the existing records in a tabel
+
+UPDATE person
+SET first_name = 'Alan', city = 'Berlin'
+WHERE person_id = 1;
+
+/* Be careful when updating records. 
+   If you omit the WHERE clause, ALL records will be updated! */
+   
+DELETE FROM person WHERE first_name = 'Roman';
+
+DELETE FROM person;
