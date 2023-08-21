@@ -157,5 +157,16 @@ SELECT first_name, last_name, title
 FROM actor
 INNER JOIN film_actor ON actor.actor_id = film_actor.actor_id
 INNER JOIN film ON film.film_id = film_actor.film_id
-WHERE first_name = 'Nick' AND last_name = 'Wahlberg'
+WHERE first_name = 'Nick' AND last_name = 'Wahlberg';
+
+/* During which months did payments occur?
+   Format your answer to return back the full month name. */
+   
+SELECT DISTINCT(TO_CHAR(payment_date, 'MONTH'))
+FROM payment;
+
+-- How many payments occurred on a Monday?
+
+SELECT COUNT(*) FROM payment
+WHERE EXTRACT(dow FROM payment_date) = 1;
 
